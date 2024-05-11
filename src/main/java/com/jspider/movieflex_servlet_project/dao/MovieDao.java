@@ -1,6 +1,6 @@
 package com.jspider.movieflex_servlet_project.dao;
 
-import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,11 +66,12 @@ public class MovieDao {
 				String quality = rs.getString("quality");
 				String url = rs.getString("url");
 				String type = rs.getString("type");
-				InputStream image = rs.getBinaryStream("image");
+				Blob blob= rs.getBlob("image");
+				byte[] image = blob.getBytes(1, (int) blob.length());
+				
 				LocalDate releaseDate = rs.getDate("releasedate").toLocalDate();
 				
-				Movie movie = new Movie(id, name, releaseDate, genresType, language, description, productionhouse, directorname, quality, image, url, type);
-			
+				Movie movie = new Movie(name, releaseDate, genresType, language, description, productionhouse, directorname, quality, url, type, image);
 				movies.add(movie);
 			}
 			

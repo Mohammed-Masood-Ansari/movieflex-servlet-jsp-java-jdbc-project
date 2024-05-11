@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.jspider.movieflex_servlet_project.dao.MovieDao;
@@ -21,6 +22,8 @@ public class MovieInsertController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		HttpSession  httpSession = req.getSession();
 		
 		MovieDao dao = new MovieDao();
 		
@@ -41,8 +44,14 @@ public class MovieInsertController extends HttpServlet {
 		
 		Movie movie = new Movie(name, releaseDate, genresType, language, description, productionHouse, directorName, quality, part.getInputStream(), url, type);
 		
-		dao.saveMovieDao(movie);
-		
+		if(httpSession.getAttribute("adminSession")!=null) {
+			dao.saveMovieDao(movie);
+			req.setAttribute("adminMsg", "Movie Registered SuccessFully...");
+			req.getRequestDispatcher("admin-home.jsp").forward(req, resp);;
+		}else {
+			req.setAttribute("adminMsg", "Your Session is out please logged in");
+			req.getRequestDispatcher("admin-login.jsp").forward(req, resp);;
+		}
 	}
 	
 }

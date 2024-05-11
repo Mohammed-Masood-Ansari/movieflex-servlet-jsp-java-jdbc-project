@@ -43,6 +43,9 @@
 </style>
 </head>
 <body>
+	<%
+	String adminMsg = (String) request.getAttribute("adminMsg");
+	%>
 	<jsp:include page="admin-navbar.jsp"></jsp:include>
 	<br>
 	<section class="vh-100 gradient-custom">
@@ -52,8 +55,17 @@
 					<div class="card shadow-2-strong card-registration"
 						style="border-radius: 15px; color: black;">
 						<div class="card-body p-3 p-md-0">
-							<h3 style="color: green;margin-left: 160px;">Movie-Registration</h3>
-							<form action="movieRegister" method="post" enctype="multipart/form-data">
+							<h3 style="color: green; margin-left: 160px;">Movie-Registration</h3>
+							<%
+							if (adminMsg != null) {
+							%>
+							<h5 style="color: pink;"><%=adminMsg%></h5>
+
+							<%
+							}
+							%>
+							<form action="movieRegister" method="post"
+								enctype="multipart/form-data">
 
 								<div class="row">
 									<div class="col-md-6 mb-4">

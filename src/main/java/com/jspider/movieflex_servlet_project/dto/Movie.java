@@ -18,6 +18,8 @@ public class Movie {
 	private String url;
 	private String type;
 	
+	transient private byte[] imageFecth;
+	
 	public Movie() {
 		super();
 	}
@@ -53,6 +55,26 @@ public class Movie {
 		this.image = image;
 		this.url = url;
 		this.type = type;
+	}
+
+	/*
+	 * constructor to fetch image
+	 */
+
+	public Movie(String name, LocalDate releasedYear, String genresType, String language, String description,
+			String productionHouse, String directorName, String quality, String url, String type, byte[] imageFecth) {
+		super();
+		this.name = name;
+		this.releasedYear = releasedYear;
+		this.genresType = genresType;
+		this.language = language;
+		this.description = description;
+		this.productionHouse = productionHouse;
+		this.directorName = directorName;
+		this.quality = quality;
+		this.url = url;
+		this.type = type;
+		this.imageFecth = imageFecth;
 	}
 
 	public int getId() {
@@ -150,4 +172,14 @@ public class Movie {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public byte[] getImageFecth() {
+		return imageFecth;
+	}
+
+	public void setImageFecth(byte[] imageFecth) {
+		this.imageFecth = imageFecth;
+	}
+	
+	
 }

@@ -1,3 +1,4 @@
+<%@page import="java.util.Base64"%>
 <%@page import="com.jspider.movieflex_servlet_project.dto.Movie"%>
 <%@page import="java.util.List"%>
 <%@page import="com.jspider.movieflex_servlet_project.dao.MovieDao"%>
@@ -27,12 +28,12 @@
 
 </head>
 <body>
-		
-		<%
-			MovieDao dao = new MovieDao();
-		
-			List<Movie> movies = dao.getSpecificTypeMovieDetails("bollywood");
-		%>
+
+	<%
+	MovieDao dao = new MovieDao();
+
+	List<Movie> movies = dao.getAllMovieDetailsDao();
+	%>
 
 	<jsp:include page="front-navbar.jsp" />
 	<br>
@@ -70,51 +71,86 @@
 	</div>
  -->
 
-	<h4 style="margin-top: 40px;">BOLLYWOOD:</h4><br>
+	<h4 style="margin-top: 40px;">BOLLYWOOD:</h4>
 
-  <div style="display: flex; justify-content: center;">
-	<%for(Movie movie:movies){ %>
-	
-	
-	
+	<div style="display: flex; width: 100VW; align-items: center;">
+		<%
+		for (Movie movie : movies) {
+		%>
+
+		<%
+		if (movie.getType().equalsIgnoreCase("BOLLYWOOD")) {
+		%>
 		<div class="card" style="width: 18rem;">
-			<img src="https://images.pexels.com/photos/50594/sea-bay-waterfront-beach-50594.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="...">
+			<img
+				src="<%=movie.getUrl()%>"
+				class="card-img-top" alt="...">
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">An item</li>
+				<a href="#"><li class="list-group-item">ClickHere</li></a>
 			</ul>
-		 </div>
-	
-	<%}%>
+		</div>
+
+		<%
+		}
+		%>
+		<%
+		}
+		%>
 	</div>
-	<br><br>
-	<div style="display: flex; justify-content: center;">
-	<%for(Movie movie:movies){ %>
-	
-	
-	
+
+	<h4 style="margin-top: 40px;">HOLLYWOOD:</h4>
+
+	<div style="display: flex; width: 100VW; align-items: center;">
+		<%
+		for (Movie movie : movies) {
+		%>
+
+		<%
+		if (movie.getType().equalsIgnoreCase("HOLLYWOOD")) {
+		%>
 		<div class="card" style="width: 18rem;">
-			<img src="https://images.pexels.com/photos/50594/sea-bay-waterfront-beach-50594.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="...">
+			<img
+				src="<%=movie.getUrl()%>"
+				class="card-img-top" alt="...">
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">An item</li>
+				<a href="#"><li class="list-group-item">ClickHere</li></a>
 			</ul>
-		 </div>
-	
-	<%}%>
+		</div>
+
+		<%
+		}
+		%>
+		<%
+		}
+		%>
 	</div>
-	
-	<div style="display: flex; justify-content: center;">
-	<%for(Movie movie:movies){ %>
-	
-	
-	
+
+	<h4 style="margin-top: 40px;">TOLLYWOOD:</h4>
+
+	<div style="display: flex; width: 100VW; align-items: center;">
+		<%
+		for (Movie movie : movies) {
+		%>
+
+		<%
+		if (movie.getType().equalsIgnoreCase("TOLLYWOOD")) {
+			String base64Image = Base64.getEncoder().encodeToString(movie.getImageFecth());
+		%>
 		<div class="card" style="width: 18rem;">
-			<img src="https://images.pexels.com/photos/50594/sea-bay-waterfront-beach-50594.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="...">
+			<img
+				src="data:image/jpeg;base64,<%=base64Image%>"
+				class="card-img-top" alt="...">
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">An item</li>
+				<a href="#"><li class="list-group-item">ClickHere</li></a>
 			</ul>
-		 </div>
-	
-	<%}%>
+		</div>
+
+		<%
+		}
+		%>
+		<%
+		}
+		%>
 	</div>
 </body>
 </html>

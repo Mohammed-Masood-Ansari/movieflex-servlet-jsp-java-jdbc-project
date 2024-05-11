@@ -19,6 +19,11 @@
 	rel="stylesheet" />
 </head>
 <body>
+
+	<%
+	String adminMsg = (String) request.getAttribute("adminMsg");
+	%>
+
 	<section class="vh-100" style="background-color: #9A616D;">
 		<div class="container py-5 h-100">
 			<div
@@ -35,6 +40,14 @@
 							<div class="col-md-6 col-lg-7 d-flex align-items-center">
 								<div class="card-body p-4 p-lg-5 text-black">
 
+									<%
+									if (adminMsg != null) {
+									%>
+									<h5 style="color: red;"><%=adminMsg%></h5>
+
+									<%
+									}
+									%>
 									<form action="adminLogin" method="post">
 
 										<div class="d-flex align-items-center mb-3 pb-1">
@@ -54,8 +67,8 @@
 
 										<div data-mdb-input-init class="form-outline mb-4">
 											<input type="password" id="form2Example27"
-												class="form-control form-control-lg"  name="adminPassword"/> <label
-												class="form-label" for="form2Example27">Password</label>
+												class="form-control form-control-lg" name="adminPassword" />
+											<label class="form-label" for="form2Example27">Password</label>
 										</div>
 
 										<div class="pt-1 mb-4">

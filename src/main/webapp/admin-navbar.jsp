@@ -32,7 +32,7 @@
 				<div class="navbar-nav">
 					<a class="nav-link active" aria-current="page" href="#">Home</a> <a
 						class="nav-link" href="#">display</a> <a class="nav-link"
-						href="#" style="margin-left: 1000px; color: red;">Logout</a>
+						href="adminLogout" style="margin-left: 1000px; color: red;">Logout</a>
 				</div>
 			</div>
 		</div>
