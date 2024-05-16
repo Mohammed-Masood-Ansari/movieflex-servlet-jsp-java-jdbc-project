@@ -82,7 +82,7 @@ public class MovieDao {
 		}
 	}
 	
-	public List<Movie> getSpecificTypeMovieDetails(String movieType){
+	public List<Movie> getSpecificTypeMovieDetailsDao(String movieType){
 		
 		List<Movie> movies=getAllMovieDetailsDao();
 		

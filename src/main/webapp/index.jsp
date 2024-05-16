@@ -1,33 +1,34 @@
-<%@page import="java.util.Base64"%>
-<%@page import="com.jspider.movieflex_servlet_project.dto.Movie"%>
 <%@page import="java.util.List"%>
+<%@page import="com.jspider.movieflex_servlet_project.dto.Movie"%>
 <%@page import="com.jspider.movieflex_servlet_project.dao.MovieDao"%>
+<%@page import="java.util.Base64"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-	crossorigin="anonymous"></script>
-
-<style type="text/css">
-.300-px-wide {
-	width: 200px;
-	height: 200px;
+<title>Landing Page</title>
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.card img {
+	height: 280px;
+	width: 100vh;
+	object-fit: cover;
 }
-</style>
 
+/* .background-image {
+	background-image:
+		url('https://user-images.githubusercontent.com/33485020/108069438-5ee79d80-7089-11eb-8264-08fdda7e0d11.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+} */
+</style>
 </head>
-<body>
+<body class="background-image">
 
 	<%
 	MovieDao dao = new MovieDao();
@@ -39,118 +40,201 @@
 	<br>
 	<br>
 
-	<!-- <div id="carouselExampleInterval" class="carousel slide"
-		data-bs-ride="carousel" class="300-px-wide">
-		<div class="carousel-inner">
-			<div class="carousel-item active" data-bs-interval="10000">
-				<img
-					src="https://www.news18.com/web-stories/entertainment/9-big-hindi-movies-releasing-soon/assets/6.jpeg"
-					class="d-block w-100" alt="...">
+
+
+
+	<section class="pt-5 pb-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<h3 class="mb-3">BollWood</h3>
+				</div>
+				<div class="col-6 text-right">
+					<a class="btn btn-primary mb-3 mr-1"
+						href="#carouselExampleIndicators2" role="button" data-slide="prev">
+						<i class="fa fa-arrow-left"></i>
+					</a> <a class="btn btn-primary mb-3" href="#carouselExampleIndicators2"
+						role="button" data-slide="next"> <i class="fa fa-arrow-right"></i>
+					</a>
+				</div>
+				<div class="col-12">
+					<div id="carouselExampleIndicators2" class="carousel slide"
+						data-ride="carousel">
+
+						<div class="carousel-inner">
+
+
+
+
+							<div class="carousel-item bollywood-item">
+								<div class="row">
+
+									<%
+									for (Movie movie : movies) {
+									%>
+
+									<%
+									if (movie.getType().equalsIgnoreCase("BOLLYWOOD")) {
+										String base64Image = Base64.getEncoder().encodeToString(movie.getImageFecth());
+									%>
+
+									<div class="col-md-4 mb-4">
+										<div class="card">
+											<img class="img-fluid" alt="100%x280"
+												src="data:image/jpeg;base64,<%=base64Image%>">
+
+										</div>
+									</div>
+									<%
+									}
+									%>
+									<%
+									}
+									%>
+
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="carousel-item" data-bs-interval="2000">
-				<img
-					src="https://www.news18.com/web-stories/entertainment/9-big-hindi-movies-releasing-soon/assets/6.jpeg"
-					class="d-block w-100" alt="...">
+		</div>
+	</section>
+
+	<section class="pt-5 pb-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<h3 class="mb-3">HollyWood</h3>
+				</div>
+				<div class="col-6 text-right">
+					<a class="btn btn-primary mb-3 mr-1"
+						href="#carouselExampleIndicators3" role="button" data-slide="prev">
+						<i class="fa fa-arrow-left"></i>
+					</a> <a class="btn btn-primary mb-3" href="#carouselExampleIndicators3"
+						role="button" data-slide="next"> <i class="fa fa-arrow-right"></i>
+					</a>
+				</div>
+				<div class="col-12">
+					<div id="carouselExampleIndicators3" class="carousel slide"
+						data-ride="carousel">
+
+						<div class="carousel-inner">
+
+
+
+
+							<div class="carousel-item hollywood-item">
+								<div class="row">
+
+									<%
+									for (Movie movie : movies) {
+									%>
+
+									<%
+									if (movie.getType().equalsIgnoreCase("HOLLYWOOD")) {
+										String base64Image = Base64.getEncoder().encodeToString(movie.getImageFecth());
+									%>
+									<div class="col-md-4 mb-3">
+										<div class="card">
+											<img class="img-fluid" alt="100%x280"
+												src="data:image/jpeg;base64,<%=base64Image%>">
+
+										</div>
+									</div>
+									<%
+									}
+									%>
+									<%
+									}
+									%>
+
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="carousel-item">
-				<img
-					src="https://www.news18.com/web-stories/entertainment/9-big-hindi-movies-releasing-soon/assets/6.jpeg"
-					class="d-block w-100" alt="...">
+		</div>
+	</section>
+
+	<section class="pt-5 pb-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<h3 class="mb-3">TollyWood</h3>
+				</div>
+				<div class="col-6 text-right">
+					<a class="btn btn-primary mb-3 mr-1"
+						href="#carouselExampleIndicators4" role="button" data-slide="prev">
+						<i class="fa fa-arrow-left"></i>
+					</a> <a class="btn btn-primary mb-3" href="#carouselExampleIndicators4"
+						role="button" data-slide="next"> <i class="fa fa-arrow-right"></i>
+					</a>
+				</div>
+				<div class="col-12">
+					<div id="carouselExampleIndicators4" class="carousel slide"
+						data-ride="carousel">
+
+						<div class="carousel-inner">
+
+
+
+
+							<div class="carousel-item tollywood-item">
+								<div class="row">
+
+									<%
+									for (Movie movie : movies) {
+									%>
+
+									<%
+									if (movie.getType().equalsIgnoreCase("TOLLYWOOD")) {
+										String base64Image = Base64.getEncoder().encodeToString(movie.getImageFecth());
+									%>
+									<div class="col-md-4 mb-3">
+										<div class="card">
+											<img class="img-fluid" alt="100%x280"
+												src="data:image/jpeg;base64,<%=base64Image%>">
+
+										</div>
+									</div>
+									<%
+									}
+									%>
+									<%
+									}
+									%>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="visually-hidden">Next</span>
-		</button>
-	</div>
- -->
+	</section>
+	<!-- JavaScript dependencies -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script type="text/javascript"
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-	<h4 style="margin-top: 40px;">BOLLYWOOD:</h4>
-
-	<div style="display: flex; width: 100VW; align-items: center;">
-		<%
-		for (Movie movie : movies) {
-		%>
-
-		<%
-		if (movie.getType().equalsIgnoreCase("BOLLYWOOD")) {
-		%>
-		<div class="card" style="width: 18rem;">
-			<img
-				src="<%=movie.getUrl()%>"
-				class="card-img-top" alt="...">
-			<ul class="list-group list-group-flush">
-				<a href="#"><li class="list-group-item">ClickHere</li></a>
-			</ul>
-		</div>
-
-		<%
-		}
-		%>
-		<%
-		}
-		%>
-	</div>
-
-	<h4 style="margin-top: 40px;">HOLLYWOOD:</h4>
-
-	<div style="display: flex; width: 100VW; align-items: center;">
-		<%
-		for (Movie movie : movies) {
-		%>
-
-		<%
-		if (movie.getType().equalsIgnoreCase("HOLLYWOOD")) {
-		%>
-		<div class="card" style="width: 18rem;">
-			<img
-				src="<%=movie.getUrl()%>"
-				class="card-img-top" alt="...">
-			<ul class="list-group list-group-flush">
-				<a href="#"><li class="list-group-item">ClickHere</li></a>
-			</ul>
-		</div>
-
-		<%
-		}
-		%>
-		<%
-		}
-		%>
-	</div>
-
-	<h4 style="margin-top: 40px;">TOLLYWOOD:</h4>
-
-	<div style="display: flex; width: 100VW; align-items: center;">
-		<%
-		for (Movie movie : movies) {
-		%>
-
-		<%
-		if (movie.getType().equalsIgnoreCase("TOLLYWOOD")) {
-			String base64Image = Base64.getEncoder().encodeToString(movie.getImageFecth());
-		%>
-		<div class="card" style="width: 18rem;">
-			<img
-				src="data:image/jpeg;base64,<%=base64Image%>"
-				class="card-img-top" alt="...">
-			<ul class="list-group list-group-flush">
-				<a href="#"><li class="list-group-item">ClickHere</li></a>
-			</ul>
-		</div>
-
-		<%
-		}
-		%>
-		<%
-		}
-		%>
-	</div>
+	<script>
+		$(document).ready(function() {
+			// Add class to the first div
+			$(".bollywood-item:first").addClass("active");
+			$(".hollywood-item:first").addClass("active");
+			$(".tollywood-item:first").addClass("active");
+		});
+	</script>
 </body>
 </html>
